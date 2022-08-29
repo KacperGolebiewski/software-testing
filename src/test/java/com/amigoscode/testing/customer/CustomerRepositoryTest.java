@@ -27,7 +27,7 @@ class CustomerRepositoryTest {
         underTest.save(customer);
         //Then
         Optional<Customer> optionalCustomer = underTest.selectCustomerByPhoneNumber(phoneNumber);
-        assertThat(optionalCustomer).isPresent().hasValueSatisfying(c->{
+        assertThat(optionalCustomer).isPresent().hasValueSatisfying(c -> {
             assertThat(c).isEqualToComparingFieldByField(customer);
         });
     }
@@ -53,13 +53,14 @@ class CustomerRepositoryTest {
 
         //Then
         Optional<Customer> optionalCustomer = underTest.findById(id);
-        assertThat(optionalCustomer).isPresent().hasValueSatisfying(c-> {
+        assertThat(optionalCustomer).isPresent().hasValueSatisfying(c -> {
 //            assertThat(c.getId()).isEqualTo(id);
 //            assertThat(c.getName()).isEqualTo("Kacper");
 //            assertThat(c.getPhoneNumber()).isEqualTo("00000");
             assertThat(c).isEqualToComparingFieldByField(customer);
         });
     }
+
     @Test
     void itShouldNotSaveCustomerWhenNameIsNull() {
         // Given
@@ -87,8 +88,6 @@ class CustomerRepositoryTest {
                 .isInstanceOf(DataIntegrityViolationException.class);
 
     }
-
-
 
 
 }
